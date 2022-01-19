@@ -1,0 +1,89 @@
+$tiny-font-size: 12px;
+
+@mixin h1Style($color) {
+    font-family: 'Baskervville', serif;
+    color: $color;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 44px;
+    letter-spacing: 0px; 
+    text-transform: none;
+}
+
+@mixin h2Style($color) {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: $color;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 2px; // div by 150px / 1000
+    text-transform: uppercase;
+    font-style: normal;
+}
+
+
+@mixin h3Style($color) {
+    font-family: 'Baskervville', serif;
+    color: $color;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: .15px; // div by 150px / 1000
+    text-transform: uppercase;
+}
+
+
+@mixin pStyle() {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 22px;    letter-spacing: 0.02px; // div by 20px / 1000
+}
+
+@mixin detailStyle($color) {
+    font-family: 'Baskerville', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    color: $color;
+    text-transform: none;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: .01px; // div 100px / 1000
+}
+
+@mixin unsetList() {
+    list-style-type: none;
+    padding: 0;
+}
+
+@mixin headingWithLine() {
+    @media (min-width: $collapse-bp) {
+        flex: 1 0 100%;
+        padding-bottom: $spacer*2;
+    }
+    @media (max-width: $collapse-bp) {
+        margin-bottom: $spacer;
+    }
+    display: flex;
+    align-items: center;
+    
+    h1, h2, h3, h4 {
+        @include h1Style($forest);
+        font-family: 'Libre Baskerville', serif;
+        flex: 0;
+        @media (min-width: $collapse-bp) {
+            white-space: nowrap;
+        }
+    }
+
+    &::after {
+        content: ' ';
+        border-bottom: 2px solid $brown;
+        display: block;
+        // height: 50%;
+        flex: 1;
+        margin-left: $spacer*2;
+    }
+}

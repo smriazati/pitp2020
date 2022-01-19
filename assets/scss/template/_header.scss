@@ -1,0 +1,425 @@
+@import '../system/imports';
+/* LAYOUT 
+
+header.side-header
+    nav.top-mini-nav 
+    div.site-logo
+    div#site-navigation
+        button.menu-toggle
+        div.nav-col-2
+            nav.main-nav
+            nav.side-nav
+*/
+
+header.site-header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    background: $white;
+
+    nav {
+        ul {
+            @include unsetList;
+
+            li {
+                display: block;
+                position: relative;
+
+                .sub-menu {
+                    // display: none;
+                    opacity: 0;
+                    transition: $transition;
+
+                    background: $brown;
+                    flex-direction: column;
+                    align-items: center;
+                    position: absolute;
+                    top: 50px;
+                    left: unset;
+
+                    &:after {
+                        content: " ";
+                        position: absolute;
+                        top: calc($spacer/1.5 * -1);
+                        border-top: none;
+                        border-right: 15px solid transparent;
+                        border-left: 15px solid transparent;
+                        border-bottom: 15px solid $brown;
+                    }
+
+                    &:hover {
+                        @media (min-width:$nav-bp) {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+                }
+
+                &.menu-item-has-children:hover {
+                    .sub-menu {
+                        @media (min-width:$nav-bp) {
+                            // opacity: 1;
+                            @include animateOpacity;
+                            display: flex !important;
+                            flex-direction: column;
+                        }
+                    }
+                }
+
+                a {
+                    display: block;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
+    nav.top-mini-nav {
+        flex: 0 0 100%;
+    }
+
+    div.site-logo {
+        flex: 0 0 250px;
+
+        .image-flat {
+            display: none;
+        }
+    }
+
+    div#site-navigation {
+        flex: 1;
+    }
+
+    div.nav-col-2 {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+
+        nav.main-nav {
+            flex: 1;
+            z-index: 1000;
+        }
+
+        nav.side-nav {
+            ul>li {
+                padding: 0 calc($spacer/3);
+
+                img {
+                    height: 1.5rem;
+                    width: auto;
+                    max-width: none;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+
+                button,
+                a {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+
+/* STYLE */
+header.site-header {
+    nav.top-mini-nav {
+        .menu-top-mini-menu-container {
+            background: $brown;
+        }
+
+        li {
+            padding: $spacer $spacer*2;
+        }
+
+        a {
+            @include h2Style($white);
+        }
+    }
+
+    nav.main-nav {
+        padding: 0 $spacer;
+        text-align: right;
+
+        .current-menu-item {
+            a {
+                border-bottom: 2px solid $brown;
+            }
+        }
+
+        li {
+            padding: $spacer $spacer*2;
+        }
+
+        >li:last-child {
+            padding-right: $spacer;
+        }
+
+        a {
+            @include h2Style($brown);
+            // padding-bottom: calc($spacer/2);
+            transition: $transition;
+        }
+
+        .sub-menu a {
+            color: $white;
+            padding-bottom: 0;
+        }
+    }
+
+    nav.side-nav {
+        padding: 0 $spacer*2 0 $spacer;
+
+        span.divider {
+            border-right: $nav-border;
+        }
+    }
+}
+
+
+// MOBILE NAV
+// based on https://www.w3schools.com/howto/howto_css_menu_icon.asp
+
+$mobile-btn-width: 35px;
+$mobile-btn-height: 35px;
+
+button.mobile-search-toggle,
+button.menu-toggle {
+    background: transparent;
+    width: $mobile-btn-width;
+    height: $mobile-btn-height;
+    padding: 0;
+    position: fixed;
+    z-index: 1000;
+    top: $spacer;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+button.menu-toggle {
+    right: $spacer;
+}
+
+button.mobile-search-toggle {
+    right: $mobile-btn-width + $spacer*2;
+}
+
+button.menu-toggle {
+    @media (max-width: $nav-bp) {
+        display: block;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        width: 100%;
+        height: 3px;
+        background-color: $brown;
+        margin: 7px 0;
+        transition: 0.2s;
+        display: block;
+    }
+
+}
+
+/* Rotate first bar */
+.toggled .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+/* Fade out the second bar */
+.toggled .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.toggled .bar3 {
+    -webkit-transform: rotate(45deg) translate(7px, -6px);
+    transform: rotate(45deg) translate(-7px, -6px);
+}
+
+:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+header.site-header {
+    @media (min-width: $nav-bp) {
+        nav {
+            ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                margin: 0;
+            }
+        }
+
+        .mobile-search-toggle,
+        #mobile-search {
+            display: none;
+        }
+    }
+
+    @media (max-width: $nav-bp) {
+        nav.top-mini-nav {
+            display: none;
+        }
+
+        div.nav-col-2 {
+            display: none;
+        }
+
+        div.nav-col-2 button {
+            display: block;
+        }
+
+        .toggled {
+            div.nav-col-2 {
+                background: $brown;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 90%;
+                width: calc(100vw - 60px);
+                height: 100%;
+                height: 100vh;
+                display: flex;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: flex-start;
+
+                nav.main-nav,
+                nav.side-nav {
+                    flex: 0;
+                }
+
+                a {
+                    color: $white;
+                }
+
+                .side-nav a img {
+                    filter: brightness(1.75);
+                }
+
+                .side-nav ul li {
+
+                    &:nth-child(5),
+                    &:nth-child(6),
+                    &:nth-child(7) {
+                        display: none
+                    }
+                }
+
+                .menu-primary-menu-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    text-align: left;
+                    padding-top: $spacer*2;
+                }
+
+                .side-nav ul {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    margin-top: $spacer*2;
+                    margin-left: $spacer*1.5;
+                }
+
+
+                &.mobile-search-form {
+                    overflow: hidden;
+
+                    .search-wrapper {
+                        @media (max-width: $nav-bp) {
+                            max-width: 80%;
+                            max-width: 80vw;
+
+                            input[type="text"] {
+                                width: 70%;
+                                max-width: 70vw;
+                            }
+                        }
+                    }
+
+                    #mobile-search {
+                        align-self: center;
+                        margin-top: $spacer*4;
+
+                        form.search-form {
+                            border-color: #ffffff;
+
+                            input {
+                                background: transparent;
+                                color: white;
+                                text-align: left;
+
+                                &::placeholder {
+                                    color: white;
+                                }
+                            }
+
+                            input[type="submit"] {
+                                background: url("/wp-content/themes/pitp2020/assets/search-light.png") no-repeat transparent;
+                                background-size: contain;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+// show dropdown menu item in mobile menu! just add show-on-dropdown as a custom css class in the Appearance > Menu
+@media (max-width: $nav-bp) {
+    header.site-header nav ul li .sub-menu {
+        opacity: 1;
+        display: block;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+
+        li {
+            display: none;
+        }
+    }
+
+    header.site-header nav.main-nav li.show-on-dropdown {
+        padding: 0;
+        padding-top: $spacer;
+        margin-top: 20px;
+        display: block;
+    }
+
+    header.site-header nav.main-nav li.show-on-dropdown+header.site-header nav.main-nav li.show-on-dropdown {
+        margin-top: 0px;
+    }
+
+    header.site-header nav ul li .sub-menu:after {
+        display: none !important;
+    }
+}
+
+// hide third level menus & accidental dropdowns
+header.site-header nav ul li.menu-item-has-children:hover .sub-menu .sub-menu,
+header.site-header nav ul li.menu-item-has-children .sub-menu .sub-menu,
+nav:not(.main-nav) .sub-menu,
+header.site-header nav:not(.main-nav) ul li .sub-menu:after {
+    display: none !important;
+}

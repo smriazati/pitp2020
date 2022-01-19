@@ -1,0 +1,219 @@
+@import '../system/imports';
+
+header.page-header {
+    padding: $spacer;
+    text-align: center;
+}
+
+
+body.blog,
+.search,
+.archive {
+    main {
+        margin-bottom: 0;
+    }
+
+    .featuredcats {
+        margin-top: 0;
+    }
+
+    .page-header {
+        padding: $spacer;
+        text-align: center;
+    }
+
+    .alm-reveal,
+    .posts-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .archive-post {
+            flex: 0 1 26%;
+
+            @media (min-width: $collapse-bp) {
+                margin-right: 11%; // resets for third below 
+            }
+
+            @media (max-width: $collapse-bp) {
+                flex: 0 1 47%;
+            }
+
+            @media (max-width: 600px) {
+                flex: 100%;
+            }
+        }
+    }
+
+    .alm-load-more-btn:hover {
+        cursor: pointer;
+
+        &.done:hover {
+            cursor: default;
+        }
+    }
+
+    // spacing for grid
+    .posts-container {
+        .archive-post {
+
+            &:nth-child(1),
+            &:nth-child(4),
+            &:nth-child(7),
+            &:nth-child(10) {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .alm-reveal {
+        .archive-post:nth-child(3n+3) {
+            margin-right: 0;
+        }
+    }
+
+    .posts-container {
+        overflow: hidden;
+
+        article:first-child:not(.product) {
+            flex: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+
+            @media (max-width: $collapse-bp) {
+                @include mobileOverlap(400px);
+            }
+
+            .card-copy {
+                height: 70%;
+                background: $sand;
+                flex: 60%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                @include featuredPostBannerTypography;
+
+                .category {
+                    order: 1;
+                    @include categoryBannerTypography;
+                    padding-top: $spacer*2;
+                }
+
+                .entry-title {
+                    order: 2;
+                    @include h1Style($forest);
+                }
+
+                .description {
+                    order: 3;
+                    display: block;
+                }
+
+                .detail {
+                    order: 4;
+                    display: inline-block;
+                    padding-bottom: $spacer*2;
+                }
+
+                @media (max-width: $collapse-bp) {
+                    padding-bottom: $spacer;
+                }
+            }
+
+            .post-thumbnail,
+            .card-thumbnail {
+                flex: 40%;
+
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    .posts-container .archive-post:not(:first-child),
+    .alm-reveal .archive-post {
+        @include cardLayout;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        margin-bottom: $spacer*4;
+
+        .description {
+            display: none;
+        }
+
+        .detail {
+            background: $brown;
+            @include h2Style($white);
+            display: inline-block !important;
+            padding: $spacer;
+            width: auto;
+            min-width: 150px;
+            @include buttonHover;
+        }
+
+    }
+
+}
+
+.no-results {
+    text-align: center;
+}
+
+.alm-btn-wrap {
+    display: flex;
+    justify-content: center;
+    padding: $spacer*4 0;
+
+    button {
+        background: transparent;
+        color: $forest;
+        border-bottom: 5px solid $sand;
+        padding: 0;
+        padding-bottom: calc($spacer/2);
+
+        &.done {
+            border-color: transparent;
+        }
+    }
+}
+
+
+
+.alm-listing {
+    text-align: center;
+}
+
+
+nav.shop-filters {
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        @include h2Style($forest);
+
+        >* {
+            padding: 0 $spacer*2;
+
+            &:first-child {
+                font-weight: 700;
+            }
+        }
+    }
+
+    @media (max-width: $collapse-bp) {
+        margin-bottom: $spacer;
+
+        ul>* {
+            padding: calc($spacer/2) $spacer;
+        }
+    }
+}

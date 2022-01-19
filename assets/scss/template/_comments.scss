@@ -1,0 +1,150 @@
+@import '../system/imports';
+// comments
+
+h2.comments-title {
+    @include h1Style($black);
+}
+
+.comment-list {
+
+    article {
+        margin-bottom: $spacer*4;
+    }
+
+    footer {
+        margin-bottom: calc($spacer/3);
+        display: flex;
+        flex-direction: column-reverse;
+        @include h2Style($black);
+    }
+
+    .comment-author {
+        @include h2Style($black);
+
+        img {
+            display: none;
+        }
+    }
+
+    .comment-metadata {
+        // @include detailStyle($black);
+        margin-bottom: $spacer;
+        opacity: 0.5;
+    }
+
+    // .comment-respond {
+    //     background: $sand;
+    //     padding: $spacer;
+    //     textarea {
+    //         background: $white;
+    //     }
+    // }
+
+    .reply {
+        a {
+            @include h2Style($black);
+            opacity: 0.5;
+        }
+    }
+
+    .children {
+        margin-left: $spacer*4;
+    }
+
+    .comment-content {
+        p {
+            max-width: 80ch;
+        }
+    }
+}
+
+
+.comment-respond {
+    h3 {
+        @include h1Style($black);
+
+        small {
+            @include h2Style($black);
+            font-size: 0.9rem;
+            margin-left: $spacer;
+        }
+    }
+
+    label {
+        margin-bottom: calc($spacer/3);
+        display: block;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        p {
+            @include h2Style($black);
+        }
+
+        input,
+        textarea {
+            text-transform: none;
+            background: $sand;
+            @include pStyle();
+        }
+    }
+
+    .comment-notes {
+        @include detailStyle($black);
+        order: 0;
+    }
+
+    .comment-form-comment {
+        order: 1;
+        width: 100%;
+    }
+
+    .comment-form-author,
+    .comment-form-email,
+    .comment-form-url {
+        display: flex;
+        flex-direction: column;
+        min-width: 50%;
+
+        @media (max-width: $collapse-bp) {
+            width: 100%;
+        }
+    }
+
+    .comment-form-author {
+        order: 2;
+    }
+
+    .comment-form-email {
+        order: 3;
+    }
+
+    .comment-form-url {
+        order: 4;
+    }
+
+    .comment-form-cookies-consent {
+        order: 5;
+        display: flex;
+        align-items: center;
+        margin: $spacer 0;
+        @include pStyle();
+
+        >*:first-child {
+            margin-right: $spacer;
+        }
+    }
+
+    .form-submit {
+        order: 6;
+        color: #000;
+    }
+
+    input[type="submit"] {
+        @include h2Style($white);
+        background: $brown;
+    }
+}

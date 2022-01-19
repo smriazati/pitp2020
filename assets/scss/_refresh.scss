@@ -1,0 +1,126 @@
+/* stone */
+body,
+header.site-header,
+.page-home section.featured-post .wrapper .copy,
+.page-home section.shop .wrapper .copy .copy-wrapper a {
+    background-color: #efedeb;
+}
+
+/* cream */
+header.site-header nav ul li .sub-menu,
+.page-home section.bio .copy-wrapper {
+    background-color: #f1e6dc;
+}
+
+@media screen and (max-width: 1050px) {
+    header.site-header nav ul li .sub-menu {
+        background-color: transparent;
+    }
+}
+
+header.site-header nav ul li .sub-menu:after {
+    border-bottom-color: #f1e6dc;
+}
+
+/* mahogany */
+.button-dark,
+.button-dark:visited,
+.page-home .subscribe .wrapper,
+header.site-header nav.top-mini-nav .menu-top-mini-menu-container {
+    background-color: #483430;
+}
+
+/* forest */
+.page-home section.shop,
+footer.site-footer,
+section.featuredcats .wrapper>* {
+    background-color: #293f38;
+}
+
+/* taupe */
+.page-home section.featured-post,
+.page-home section.featuredcats {
+    background: #bab1aa;
+}
+
+/* black */
+header.site-header nav.main-nav .sub-menu a,
+header.site-header nav.main-nav a {
+    color: #000;
+}
+
+@media screen and (max-width: 1050px) {
+
+    header.site-header nav.main-nav .sub-menu a,
+    header.site-header nav.main-nav a {
+        color: #fff;
+    }
+}
+
+
+header.site-header div.nav-col-2 nav.side-nav ul>li img {
+    filter: grayscale(1) invert(1);
+}
+
+/* white */
+section .wrapper .copy .copy-wrapper h2.small,
+.page-home section.shop .wrapper .copy .copy-wrapper {
+    color: #fff;
+}
+
+.page-home section.shop .wrapper .copy .copy-wrapper a {
+    color: #000 !important;
+}
+
+.page-home section.bio {
+    padding: 100px 0;
+}
+
+.page-home .currently-loving .swiper-button-next:after,
+.page-home .currently-loving .swiper-button-prev:after {
+    background: transparent;
+}
+
+@media screen and (max-width: 1050px) {
+    section.featuredcats .wrapper {
+        flex-direction: column;
+    }
+
+    section.featuredcats .wrapper>*:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+/* mobile layout fixes */
+
+@media (max-width: 768px) {
+
+    .page-home section.featured-post,
+    .page-home section.featuredcats {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+    }
+
+    .page-home section.featured-post .wrapper {
+        padding: 0;
+        margin-top: 0;
+    }
+
+    section.featuredcats .wrapper {
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-home .currently-loving {
+        padding-top: 60px;
+    }
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    background-color: #f1e6dc;
+    color: #000;
+}

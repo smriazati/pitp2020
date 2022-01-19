@@ -1,0 +1,590 @@
+@import '../system/imports';
+
+// HOME PAGE
+.page-home {
+
+
+    main.site-main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    // 2 col section
+    section.flex-2 {
+        .wrapper {
+            display: flex;
+        }
+    }
+
+
+    section .wrapper .full-width {
+        flex: 1 0 100%;
+    }
+
+    // section - featured post
+    section.featured-post {
+        padding-bottom: 0;
+
+        .wrapper {
+            align-items: center;
+            flex-direction: row-reverse;
+
+            .copy {
+                height: 70%;
+                background: $sand;
+                flex: 60%;
+
+                .copy-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    @media (max-width: $collapse-bp) {
+                        padding-bottom: $spacer;
+                    }
+                }
+            }
+
+            .thumbnail {
+                flex: 40%;
+            }
+        }
+    }
+
+    // section - online shop banner
+    section.shop {
+        background: $sand;
+
+        .wrapper .copy .copy-wrapper {
+            text-align: center;
+        }
+
+        .wrapper {
+            >* {
+                flex: 1 0 50%;
+                align-items: center;
+            }
+
+            .copy {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                @media (max-width: $collapse-bp) {
+                    padding-bottom: $spacer*4;
+
+                    img {
+                        margin-bottom: $spacer;
+                    }
+                }
+            }
+
+            .thumbnail {
+                a {
+                    display: block;
+                    max-height: 450px;
+                    max-height: 45vh;
+                    max-width: 450px;
+                    max-width: 45vh;
+                    margin: 0 auto;
+
+                    img {
+                        object-fit: cover;
+                        border: 10px solid $white;
+                    }
+                }
+
+            }
+        }
+    }
+
+    // currently loving
+
+    .currently-loving {
+        text-align: center;
+
+        @media (min-width: $collapse-bp) {
+            padding-top: $spacer*4;
+        }
+
+        .swiper-container.contained {
+            @media (max-width: $collapse-bp) {
+                max-width: 500px;
+
+            }
+
+            // teeny slider 
+            @media (max-width: 500px) {
+                max-width: 350px;
+            }
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            color: $brown;
+            font-size: 18px;
+            background: $white;
+            padding: $spacer;
+        }
+
+        .swiper-button-prev,
+        .swiper-container-rtl .swiper-button-next {
+            left: 0;
+        }
+
+        .swiper-button-next,
+        .swiper-container-rtl .swiper-button-prev {
+            right: 0;
+        }
+    }
+
+    // section - recent posts
+
+    .recent-posts {
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            overflow: hidden;
+
+            @media (min-width: $collapse-bp) {
+                padding-top: $spacer*4;
+            }
+
+            >* {
+                flex: 0 1 30%;
+            }
+
+            .section-title {
+                @include headingWithLine();
+            }
+
+            .card {
+                @include cardLayout;
+            }
+
+
+
+        }
+    }
+
+    // section - vlog 
+
+    section.vlog {
+        .section-title {
+            @include headingWithLine;
+        }
+
+        .thumbnail {
+            position: relative;
+            transition: $transition;
+
+            // margin-top: $spacer*2;
+            &:hover {
+                cursor: pointer;
+                opacity: 0.85;
+            }
+        }
+
+        .featured-vlog-copy {
+            h3 {
+                @include h2Style(#000);
+            }
+
+            margin-top: $spacer;
+        }
+
+        .featured-vlog-wrapper {
+            .vlog-embed-wrapper {
+                display: none;
+            }
+        }
+    }
+
+    .play-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:after {
+            // play button
+            content: ' ';
+            width: 0;
+            height: 0;
+
+            @media (min-width: $collapse-bp) {
+                border-top: $spacer*2 solid transparent;
+                border-bottom: $spacer*2 solid transparent;
+                border-left: $spacer*3 solid white;
+            }
+
+            @media (max-width: $collapse-bp) {
+                border-top: $spacer solid transparent;
+                border-bottom: $spacer solid transparent;
+                border-left: $spacer*1.5 solid white;
+            }
+
+            transition: $transition;
+        }
+    }
+
+    // section - daily outfits 
+
+    .daily-outfits {
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            @media (max-width: $collapse-bp) {
+                flex-direction: column;
+            }
+
+            .section-title {
+                @include headingWithLine();
+                flex: 1 0 100%;
+            }
+
+            .card-square {
+                margin-bottom: $spacer;
+            }
+
+            .section-link {
+                h3 {
+                    @include h2Style(#000);
+                }
+            }
+        }
+    }
+
+    .card-square {
+        flex: 0 0 30%;
+        align-items: flex-start;
+        text-align: center;
+
+        @media (max-width: $collapse-bp) {
+            flex: 1 0 100%;
+        }
+    }
+
+    .card-square-thumbnail {
+        img {
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .card-square-copy {
+        h3 {
+            @include detailStyle(#000);
+            margin-top: $spacer;
+        }
+    }
+
+    // section - bio
+    section.bio {
+        &.bio-grid {
+            .wrapper {
+                display: grid;
+                grid-template-rows: 1fr;
+                grid-template-columns: 55% 100px 35%;
+                align-items: center;
+
+                .copy {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    grid-row-start: 1;
+                    grid-row-end: 2;
+                }
+
+                .thumbnail {
+                    grid-column-start: 2;
+                    grid-column-end: 4;
+                    grid-row-start: 1;
+                    grid-row-end: 2;
+                    text-align: center;
+                }
+            }
+        }
+
+        .copy-wrapper {
+            background: $cream;
+
+            @media (max-width: $collapse-bp) {
+
+                h2,
+                .detail {
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+
+    // section - subscribe
+    .subscribe {
+        overflow: hidden;
+
+        .wrapper {
+            background: $sage;
+            display: flex;
+            flex-wrap: nowrap;
+            padding: $spacer*4;
+
+            @media (max-width: $big-container) {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            justify-content: space-between;
+
+            // flex layouts
+            @media (min-width: 1500px) {
+                .copy {
+                    flex: 0 0 30%;
+                }
+
+                .subscribe-form {
+                    flex: 0 0 70%;
+                }
+            }
+
+            @media (min-width: 1300px) and (max-width: 1500px) {
+                .copy {
+                    flex: 0 0 40%;
+                }
+
+                .subscribe-form {
+                    flex: 0 0 60%;
+                }
+            }
+
+            // sm screens
+            @media (max-width: 1300px) {
+                flex-direction: column;
+
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .copy {
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: $spacer*2;
+
+                    h2 {
+                        margin-right: 0;
+                        margin-bottom: $spacer;
+                    }
+                }
+
+                .subscribe-form {
+                    flex: 1;
+                    width: 100%;
+
+                    form {
+                        flex-direction: column;
+
+                        .content__formFields {
+                            margin: 0 !important;
+                            flex: 1;
+                            justify-content: center;
+                            padding-right: 0;
+                            flex-wrap: wrap;
+
+                            >* {
+                                flex: 1;
+                                margin-bottom: $spacer;
+                            }
+                        }
+
+                        input[type="submit"] {
+                            width: 100%;
+                            padding-left: 0;
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+
+
+
+            .copy {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+
+                @media (max-width: $big-container) {
+                    padding-bottom: $spacer;
+                }
+
+                >* {
+                    margin-right: $spacer*2;
+
+                    @media (min-width: $collapse-bp) {
+                        white-space: nowrap;
+                    }
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                h2 {
+                    @include h1Style($white);
+                }
+
+                p {
+                    @include detailStyle($white);
+                    margin-bottom: 0;
+                }
+            }
+
+            .subscribe-form form {
+                display: flex;
+                justify-content: space-between;
+
+                .content__formFields {
+                    display: flex;
+                    justify-content: space-between;
+                    flex: 1;
+                    margin: 0 $spacer;
+
+                    >* {
+                        flex: 1;
+
+                        &.enews-subbox {
+                            @media (min-width: 583px) {
+                                margin-right: $spacer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // insta feed
+    .instagram {
+
+        // #sbi_images {
+        //     //display: none !important; // delete this after connecting the insta
+        // }
+        // .insta-feed li {
+        //   // height: $spacer*12; // delete this after connecting the insta
+        // }
+        #sbi_images,
+        .insta-feed {
+            @include unsetList;
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+
+            .sbi_item,
+            li {
+                flex: 0 0 14%;
+
+                @media (max-width: $collapse-bp) {
+                    flex: 0 0 28%;
+
+                    &:nth-child(4),
+                    &:nth-child(5),
+                    &:nth-child(6) {
+                        display: none;
+                    }
+                }
+
+                background: $sand;
+
+                a {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+
+    /////////////////////////////
+    // mobile home page
+
+    @media (max-width: $collapse-bp) {
+
+
+        // recent posts
+        .recent-posts .wrapper>* {
+            flex: 100%;
+            margin: $spacer*2;
+        }
+
+        // end recent
+
+        section.bio.bio-grid .wrapper {
+            grid-template-columns: 1fr;
+            grid-template-rows: 400px auto;
+
+            .thumbnail {
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                height: 100%;
+
+                img {
+                    height: auto;
+                }
+            }
+
+            .copy {
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                text-align: center;
+
+                h2 {
+                    padding-top: $spacer*3;
+                }
+            }
+        }
+
+        // bio grid
+
+
+
+
+    }
+
+    // end mobile MQ < $collapse-bp
+
+
+    /* see all posts button */
+    .daily-outfits .section-link,
+    .recent-posts .see-all-posts-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 45px 0 30px 0;
+    }
+
+    .recent-posts .see-all-posts-btn a {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        color: #293F38;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-style: normal;
+    }
+
+}
+
+// .home
