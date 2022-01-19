@@ -211,7 +211,7 @@ add_filter( 'wp_insert_post_data', 'default_comments_off' );
 function pitp2020_custom_js() {
 	wp_enqueue_script( 'piptp2020-main', get_template_directory_uri() . '/js/main.js', array(), _S_VERSION, true );
 
-	if ( is_home() ) {
+	if ( is_page( 'Home') ) {
 		wp_enqueue_script( 'pitp2020-home', get_template_directory_uri() . '/js/home.js', array(), _S_VERSION, true );
 	}
 	if ( is_single() || is_page() ) {

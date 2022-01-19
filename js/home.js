@@ -1,4 +1,3 @@
-
 function docReady(fn) {
   // see if DOM is already available
   if (document.readyState === "complete" || document.readyState === "interactive") {
@@ -42,7 +41,7 @@ function swiperInit() {
       
   });
 
-  // console.log(mySwiper.params);
+  console.log(mySwiper.params);
 }
 
 
